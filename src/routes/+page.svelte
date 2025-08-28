@@ -1,6 +1,7 @@
 <script>
     import Animation from '$lib/Animation.svelte';
     import { navBarHeight } from "$lib/shared.svelte.js";
+    import { base } from '$app/paths';
 
     console.log(`navbarHeight ${navBarHeight.height}`);
 </script>
@@ -22,8 +23,8 @@
         </div>
         <div class="flex-1 h-full flex flex-col justify-center m-4 p-4">
             <div class='h-1/2 flex flex-col justify-items-center justify-evenly'>
-                <a href='/projects' class="btn btn-primary">Projects</a>
-                <a href='/aboutme' class="btn btn-secondary">About Me</a>
+                <a href='{base}/projects' class="btn btn-primary">Projects</a>
+                <a href='{base}/aboutme' class="btn btn-secondary">About Me</a>
                 <a class="btn btn-warning" href='https://www.youtube.com/watch?v=grd-K33tOSM'>Do not Press</a>
             </div>
         </div>

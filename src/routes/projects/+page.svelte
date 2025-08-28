@@ -1,4 +1,5 @@
 <script>
+    import { base } from '$app/paths';
 </script>
 
 <div class="flex flex-col justify-center">

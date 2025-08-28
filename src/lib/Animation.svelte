@@ -1,6 +1,7 @@
 <script>
     let { size, speed, count, interval } = $props();
 
+    import { base } from '$app/paths';
     import { onMount, tick } from 'svelte';
     import { navBarHeight } from "$lib/shared.svelte.js";
     
@@ -159,7 +160,7 @@ dash trails behind them, when you click one of them they disappear and new one s
 '>
     {#each positions as pos, i (pos.id)}
         <img
-            src="/triangle-white.svg"
+            src="{base}/triangle-white.svg"
             alt='triangle'
             class='absolute filter drop-shadow-[0_0_10px_rgba(59,130,246,0.9)] '
             height={MAX_SIZE}
