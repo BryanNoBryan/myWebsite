@@ -17,7 +17,7 @@ export const projects = [
         desc: 'Programmed Swerve Drive from complete scratch.',
         image: 'vex2.jpg',
         mdsvex: 'vex',
-        icons: ['c++'],
+        icons: ['cpp'],
     },
     {
         year: 2024,
@@ -71,6 +71,6 @@ export const projects = [
         desc: 'Airplane COMPLETELY FROM SCRATCH. Including custom arduino transmitter, arduino flight controller, and a handmade plane.',
         image: 'plane/old_plane_master.jpg',
         mdsvex: 'airplane',
-        icons: ['c++', 'arduino'],
+        icons: ['cpp', 'arduino'],
     },
 ]
