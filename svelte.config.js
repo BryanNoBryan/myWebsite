@@ -17,7 +17,7 @@ const config = {
     ],
     kit: { 
         adapter: adapter({
-
+            pages: 'docs',
             fallback: '404.html'
         }),
         paths: {
