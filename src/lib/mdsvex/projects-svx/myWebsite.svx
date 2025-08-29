@@ -1,0 +1,28 @@
+<script>
+    import { base } from '$app/paths';
+</script>
+
+This website is a playground for me to make a maintainable blog-oriented website.
+
+It is by design made easy to add on new blogs.
+
+Tools used:
+- SvelteKit
+- mdsvex (.md to svelte build converter)
+- daisyUI
+- tailwindCSS
+- Github Pages
+
+I create a `projects.js` to hold general data for all my projects 
+and for the `/projects` page functionality and several .svx files(svelte .md files) 
+for each project page. Each page is by route parameters so it's automatic. The 
+`+page.js` imports the .svx, pulls projects.js, and loads it into `+page.svelte`. By
+the time preprocessing is done, the .svx file is actually a svelte file, so I can
+directly use it as a component, rendering this page.
+
+The only pitfall is that Svelte 5 runes update break the layout functionality,
+and thus also frontmatter. Although I could use the depreciated `<slot />` to 
+make it work, I rather wait for a mdsvex update(doesn't seem like it's happening, no
+git commits since 3 months ago, dated. 8/28/25). 
+
+![among us]({base}/images/website1.png)

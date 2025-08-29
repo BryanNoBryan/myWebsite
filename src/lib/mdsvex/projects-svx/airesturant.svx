@@ -1,0 +1,6 @@
+<script>
+    import { base } from '$app/paths';
+    import VideoViewer from '$lib/VideoViewer.svelte';
+</script>
+
+![among us]({base}/images/airesturant1.png)

@@ -1,0 +1,19 @@
+<script>
+    import { base } from '$app/paths';
+    import VideoViewer from '$lib/VideoViewer.svelte';
+</script>
+
+<VideoViewer src='{base}/images/vex1.MP4' />
+
+![among us]({base}/images/vex2.jpg)
+
+![among us]({base}/images/vex3.jpg)
+
+
+[The oldest Swerve Drive reference, but the best.](https://www.chiefdelphi.com/t/paper-4-wheel-independent-drive-independent-steering-swerve/107383)
+
+Additional Trick: Cosine Compensation
+
+[Cosine Compensation](https://www.chiefdelphi.com/t/paper-4-wheel-independent-drive-independent-steering-swerve/107383)
+
+[Github](https://github.com/BryanNoBryan/SwerveDrive2024/tree/main)

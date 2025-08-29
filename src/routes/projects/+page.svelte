@@ -1,8 +1,23 @@
 <script>
     import { base } from "$app/paths";
     import { projects, TYPES } from "$lib/projects";
-    import { fade, blur, slide } from 'svelte/transition';
     // const TYPES = ['programming', 'robotics'];
+    import { slide } from 'svelte/transition';
+    import { onMount } from 'svelte';
+    import { isSmall } from '$lib/isMobile.js';
+
+    let small = $state(isSmall());
+
+    function update() {
+        small = isSmall();
+        console.log(`isSmall ${isSmall}`);
+    }
+
+    onMount(() => {
+        update();
+        window.addEventListener("resize", update);
+        return () => window.removeEventListener("resize", update);
+    });
 
     let type_state = $state([true, true]);
 
@@ -32,9 +47,10 @@
           let title = proj.title;
           let desc = proj.desc;
           let icons = proj.icons.map((icon) => `${base}/svg/${icon}.svg`);
+          let mdsvex = `${base}/projects/${proj.mdsvex}`;
           let image = `${base}/images/${proj.image}`;
           
-          let card_data = ({title, desc, icons, image}); 
+          let card_data = ({title, desc, icons, mdsvex, image}); 
 
           //new key
           if (!map.has(year)) {
@@ -64,7 +80,7 @@
 </div>
 
 <!-- flex-row for desktop, flex-col for mobile -->
-<div class="m-8">
+<div class="{!small ? 'm-8' : 'm-1'}">
   <ul class="timeline timeline-vertical timeline-snap-icon timeline-compact">
     {#each years as year}
       <li class=''>
@@ -80,7 +96,7 @@
         <div class="timeline-end timeline-box flex flex-row flex-wrap">
           <!-- start card -->
           {#each projects_map.get(year) as proj}
-            <a href='{base}/' class="card bg-base-100 w-96 shadow-lg p-1 m-2" transition:slide={{axis: 'y'}}>
+            <a href={proj.mdsvex} class="card bg-base-100 {!small ? 'w-96' : 'w-75'} shadow-lg p-1 m-2" transition:slide={{axis: 'y'}}>
               <figure>
                 <img
                   src={proj.image}
@@ -91,13 +107,13 @@
                 <p>{proj.desc}</p>
                 <div class='flex flex-row justify-center'>
                   {#each proj.icons as icon}
-                    <div class="m-5">
+                    <div class="{!small ? 'm-5' : 'm-2'}">
                       <img
                         src={icon}
                         alt='language/tool icon'
-                        class='absolute filter drop-shadow-[0_0_10px_rgba(59,130,246,0.9)] '
-                        height={25}
-                        width={25}
+                        class='filter drop-shadow-[0_0_10px_rgba(59,130,246,0.9)] '
+                        height={!small ? 25 : 20}
+                        width={!small ? 25 : 20}
                       />
                     </div>
                   {/each}

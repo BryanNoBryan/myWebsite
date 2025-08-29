@@ -27,7 +27,6 @@
 
         width = rect.width;
         height = rect.height;
-        console.log(`width ${width} height ${height}`);
 
         const x_scale = width/prev_width;
         const y_scale = height/prev_height;
@@ -44,11 +43,6 @@
             pos.x *= x_scale;
             pos.y *= y_scale;
         }
-        
-        positions.forEach((pos) => {
-            console.log(`pos.x ${pos.x}`);
-            console.log(`pos.y ${pos.y}`);
-        });
         // optionally update positions here
     }
 
@@ -123,7 +117,6 @@
         
         width = rect.width;
         height = rect.height;
-        console.log(`widht ${width} height ${height}`);
 		
         positions = Array.from({ length: COUNT }, (_, i) => ({
             id: i,
@@ -131,7 +124,6 @@
         }));
 
         window.addEventListener("resize", updateSize);
-        console.log(positions);
 
         const interval = setInterval(() => {
 			entropy();

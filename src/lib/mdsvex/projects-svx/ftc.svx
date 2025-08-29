@@ -1,0 +1,8 @@
+<script>
+    import { base } from '$app/paths';
+    import VideoViewer from '$lib/VideoViewer.svelte';
+</script>
+
+<VideoViewer src='{base}/images/ftc1.MOV' />
+
+![among us]({base}/images/ftc2.png)

@@ -1,0 +1,8 @@
+<script>
+    import { base } from '$app/paths';
+    import VideoViewer from '$lib/VideoViewer.svelte';
+</script>
+
+![among us]({base}/images/dentalapp1.png)
+
+![among us]({base}/images/dentalapp2.png)
