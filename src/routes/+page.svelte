@@ -8,7 +8,7 @@
 
 <div class='w-full flex flex-row' style='height: calc(100vh - {navBarHeight.height}px);'>
     <div class='flex-1'>
-        <Animation size=40 speed=4 count=20 interval=30 />
+        <Animation size=40 speed=1 count=20 interval=30 />
     </div>
     <div class='glass rounded-lg flex-5 flex flex-row justify-items-center justify-center m-4 p-4'>
         <div class='flex-1 flex flex-col justify-center justify-items-center m-4 p-4'>
@@ -25,12 +25,12 @@
             <div class='h-1/2 flex flex-col justify-items-center justify-evenly'>
                 <a href='{base}/projects' class="btn btn-primary">Projects</a>
                 <a href='{base}/aboutme' class="btn btn-secondary">About Me</a>
-                <a class="btn btn-warning" href='https://www.youtube.com/watch?v=grd-K33tOSM'>Do not Press</a>
+                <a class="btn btn-warning" target="_blank" href='https://www.youtube.com/watch?v=grd-K33tOSM'>Do not Press</a>
             </div>
         </div>
     </div>
     <div class='flex-1'>
-        <Animation size=40 speed=4 count=20 interval=30 />
+        <Animation size=40 speed=1 count=20 interval=30 />
     </div>
 </div>
 <div class='flex flex-row justify-center-safe'>

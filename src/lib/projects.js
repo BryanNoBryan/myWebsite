@@ -1,0 +1,68 @@
+export const TYPES = ['programming', 'robotics'];
+
+export const projects = [
+    {
+        year: 2025,
+        type: 'programming',
+        title: 'This Website',
+        desc: 'A playground using Sveltekit and daisyUI.',
+        image: 'among_us.png',
+        icons: ['svelte', 'js', 'tailwindcss', 'daisyui'],
+    },
+    {
+        year: 2025,
+        type: 'robotics',
+        title: 'VEX Robotics',
+        desc: 'Programmed Swerve Drive from complete scratch.',
+        image: 'among_us.png',
+        icons: ['c++'],
+    },
+    {
+        year: 2024,
+        type: 'robotics',
+        title: 'FTC Robotics',
+        desc: 'Programmed a 3 dof robotic arm.',
+        image: 'among_us.png',
+        icons: ['java'],
+    },
+    {
+        year: 2024,
+        type: 'programming',
+        title: 'Dental AI App',
+        desc: 'Mobile app made with Flutter diagnosing using a Teachable Machine model with Firebase G-login and database.',
+        image: 'among_us.png',
+        icons: ['flutter', 'firebase', 'dart'],
+    },
+    {
+        year: 2024,
+        type: 'programming',
+        title: 'AI Resaurant Recommender',
+        desc: 'Hackathon project that based on your location and preferences, rates and recommends surrounding restaurants. It uses Google Places API, Yelp API, OpenAI API, and Firebase',
+        image: 'among_us.png',
+        icons: ['flutter', 'firebase', 'dart'],
+    },
+    {
+        year: 2024,
+        type: 'programming',
+        title: 'Course Guide',
+        desc: 'I parsed my school\'s course guide PDF into an interactive web app, using flutter and firebase. It has access levels, allowing CRUD.',
+        image: 'among_us.png',
+        icons: ['flutter', 'firebase', 'dart'],
+    },
+    {
+        year: 2024,
+        type: 'programming',
+        title: 'Naive Bayes Spam Email Detection',
+        desc: 'Psuedo-Machine Learning from scratch, detecting spam emails with just a small set of data.',
+        image: 'among_us.png',
+        icons: ['py'],
+    },
+    {
+        year: 2023,
+        type: 'robotics',
+        title: 'Arduino Airplane and Transmitter',
+        desc: 'Airplane COMPLETELY FROM SCRATCH. Including custom arduino transmitter, arduino flight controller, and a handmade plane.',
+        image: 'among_us.png',
+        icons: ['c++', 'arduino'],
+    },
+]

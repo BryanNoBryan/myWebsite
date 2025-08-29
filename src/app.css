@@ -11,3 +11,13 @@
   /* --color-primary: blue;
   --color-secondary: teal; */
 /* } */ 
+
+@utility timeline {
+  @apply justify-start;
+  @apply justify-items-start;
+}
+
+@utility timeline-vertical {
+  @apply justify-start;
+  @apply justify-items-start;
+}
