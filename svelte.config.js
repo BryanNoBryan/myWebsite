@@ -22,7 +22,8 @@ const config = {
         }),
         paths: {
             relative: false,
-            base: '/myWebsite' //process.argv.includes('dev') ? '' : 
+            base: '', //now custom domain
+            // base: '/myWebsite' //process.argv.includes('dev') ? '' : 
             // I'll just keep base this way, it helps debug
         }
 
