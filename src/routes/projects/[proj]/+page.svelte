@@ -1,6 +1,19 @@
 <script>
 	let { data } = $props();
     import { base } from '$app/paths';
+    import { onMount } from 'svelte';
+
+    let width = $state(screen.width);
+
+    function update() {
+        width = screen.width;
+    }
+
+    onMount(() => {
+        update();
+        window.addEventListener("resize", update);
+        return () => window.removeEventListener("resize", update);
+    });
 
     let project = data.project;
     let icons = project.icons.map((icon) => `${base}/svg/${icon}.svg`);
@@ -10,7 +23,7 @@
     <title>{data.project.title}</title>
 </svelte:head>
 
-<div class='flex flex-row justify-center mt-6 p-4'>
+<div class='flex flex-row justify-center mt-6 p-4 w-{width}'>
     <div class='prose prose-xl'>
         <div>
             <h1>{project.title}</h1>
