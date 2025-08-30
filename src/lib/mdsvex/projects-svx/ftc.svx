@@ -3,7 +3,7 @@
     import VideoViewer from '$lib/VideoViewer.svelte';
 </script>
 
-<VideoViewer src='{base}/images/ftc1.mp4' />
+<VideoViewer src="{base}/images/ftc1.mp4" />
 
 The base joint is called the `shoulder`, and the middle joint is called the `elbow`. The last joint at the very tip is called the `end effector`.  
 
