@@ -1,1 +1,0 @@
-import"./DsnmJJEf.js";import"./DJQhJNnZ.js";import{f as s,t as e,a as m,c as o,b as i}from"./Ncr3TIXe.js";import{s as p}from"./By_6KjCe.js";import{b as f}from"./Crl4R5p6.js";var n=s('<p><img alt="among us"/></p>');function v(a){var t=n(),r=o(t);i(t),e(()=>p(r,"src",`${f??""}/images/airesturant1.png`)),m(a,t)}export{v as default};

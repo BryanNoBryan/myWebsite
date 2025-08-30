@@ -24,7 +24,7 @@
 </svelte:head>
 
 <div class='flex flex-row justify-center mt-6 p-4 w-{width}'>
-    <div class='prose prose-xl'>
+    <div class='prose prose-xl max-w-full'>
         <div>
             <h1>{project.title}</h1>
             <h3>{project.year}</h3>
