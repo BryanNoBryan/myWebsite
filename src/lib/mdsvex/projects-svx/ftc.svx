@@ -3,6 +3,172 @@
     import VideoViewer from '$lib/VideoViewer.svelte';
 </script>
 
-<VideoViewer src='{base}/images/ftc1.MOV' />
+<VideoViewer src='{base}/images/ftc1.mp4' />
+
+The base joint is called the `shoulder`, and the middle joint is called the `elbow`. The last joint at the very tip is called the `end effector`.  
+
+The length between the shoulder and elbow is called the `upper arm`, and the length between the elbow and end effector is called the `forearm`.
+
+This arm uses two motors for the shoulder and one motor connected to a chain to control the elbow.
+
+These FTC goBilda motors only allow relative encoding, so we had to use limit switches to know our absolute position.
+There is a limit switch at the very back under the upper arm, and another limit switch in between the two lengths. These
+two limit switches enable use to set our initial rotation for each joints, so we know our position in space.
 
 ![among us]({base}/images/ftc2.png)
+
+How the arm is controlled is through a joystick, which steadily increases an (x, y) coordinate as our
+input into our robot.
+
+Here is mockup for how data is passed:
+
+`joystick` -> ` (x, y)` -> `(q1, q2)` -> `(a1, a2)` -> `Motion Profile` -> `PIDF Controller`
+
+\*&nbsp;`(x, y)`: (x, y) coordinate positions in space relative to the robot, with x horizontal and y vertical.   
+\*&nbsp;`(q1, q2)`: The angles the shoulder and elbow should be at according to the above picture. Angles used should be angle wrapped to [-180, 180].  
+\*&nbsp;`(a1, a2)`: Final motor position. Because of our absolute positioning system with limit switches, the fact that we use
+a chain for the elbow joint, and, most importantly, rotating the shoulder rotates the elbow in our specific robot build, 
+the `(q1, q2)` angles don't exactly match the final position each motor has to travel to. After adding offsets from
+our initial position and adding the shoulder travel "distance" to the elbow's, we arrive at (q1, q2).  
+\*&nbsp;`Motion Profile`: Motion profiles define a trajectory for our reference over a certain time period. 
+For every time in this period, the motion profile tells what reference we should be at. We used a trapezoidal motion controller.  
+\*&nbsp;`PIDF Controller`: Proportion, Integral, Derivative, Feed-forward Controller. It enables the stable movement
+from a setpoint to an endpoint. In this case, the feed-forward is adjusting for the effects of gravity. The calculation
+for this feed-forward will be described below.
+
+In essence, the joystick controls the end effector's position in space relative to the robot, enabling
+motion that can preset or changed in real-time.
+
+## Robot Overview
+
+The entire arm anatomy is only connected by two shafts of the three motors. The two motors on one side are driven
+in parallel with a short chain and sprocket, because of the torque requirements to actually move the whole arm from the shoulder.
+The side with one motor drives the long chain and sprocket spanning the whole upper arm, moving the elbow.
+
+We discovered that when we turn the shoulder, while attempting to keep the elbow motor fixed in position, nothing moved.
+This is because as the shoulder turns, the entire chain and sprocket assembly rotates with the elbow motor as the axis of rotation.
+Thus, we need to add to the elbow rotation angle with that of the shoulder's.
+
+About the absolute positioning system, the initial angles are determined when the limit switches are pressed(startup and recalibrations), 
+adding a constant value(guess and checked) to the motor's current position at that time.
+
+## (a1, a2)
+
+```
+a1 = shoulderInitialPosition - q1;
+a2 = -elbowInitialPosition + q2 - shoulderCurrentPosition;
+```
+
+This is the general idea of what the final position calculations should look like.
+You will have to deal with negative signs and constants by yourself **(i.e. pain and suffering)**.
+
+
+## Trapezoidal Motion Profile
+
+Here's an excellent source I used to learn and will reference from.  
+[CtrlAltFtc Motion Profiling](https://www.ctrlaltftc.com/advanced/motion-profiling)
+
+The primary purpose of a motion profile is for smooth, controlled motion.
+
+> Motion profiles define a trajectory for our reference over a certain time period.
+
+In human words, you define a distance. The motion profile tells you 
+where to be between 0 to distance at a point in time for smooth motion.
+
+The motion signature looks something like this:
+```
+Number MotionProfile(max_acceleration, max_velocity, distance, elapsed_time)
+```
+
+The method makes use of simple kinematics to calculate where to be between [0, distance] at t=elapsed_time.
+
+At this point, you know where you want to be, but how do you get there with only motor.power()? That's where
+PIDF Controllers come in.
+
+## PIDF Controller
+
+A PIDF Controller is a way to get you from a inital point to a final point (and stay there) with only
+motor.power() and current position data.
+
+A PIDF Controller is actually an extension of a PID Controller, with F called feed-forward, basically meaning
+handle external disturbances.
+
+P = Proportional
+I = Integral
+D = Derivative
+F = Feed-Forward
+
+It would take too much time to explain it here, this will explain it better:
+[CtrlAltFtc PID](https://www.ctrlaltftc.com/the-pid-controller)
+
+I have two PIDF Controllers, one for the shoulder, and one for the elbow.
+
+The only external disturbances in my system are gravity and friction. I choose to ignore friction :\)
+
+To account for gravity, I have to calculate the torque the arm exerts on the joints. Given `τ = r × F × sinθ`, I will 
+need to find a way to determine both r and F in both arm lengths.
+
+The easiest way to determine both are to treat each arm length as a point mass. Specifically, I make the
+assumption that the center of each arm length are their center of masses. 
+
+This makes things much simpler. However, now we also need to know the angle of the 'points' relative
+to their joints now.
+
+It's a bunch of tedious math using the current position of both joints. I leave it as an exercise to the reader :\) **(i.e. pain and suffering)**.
+
+### Forearm calculation for the elbow
+
+```
+τ = r × F × sinθ
+τ = forearm_length/2 × mass × 9.81 × sin(relative_angle)
+elbow.power( PID(current_pos, setpoint) + τ );
+```
+
+### Shoulder calculation for the shoulder
+
+Things get slightly more complicated as we have to take into account the masses
+of both the upper arm and forearm.
+
+Thankfully, I made a drastic simplification like any physicist.
+
+I'll simply average positions and masses of each arm length, with constants account for different masses of each arm length of course.
+
+weight1 = upper arm mass constant  
+weight2 = forearm mass constant
+
+```
+//shoulder COM
+x1 = shoulderLen * cos(shoulderAngle) / 2;
+y1 = shoulderLen * sin(shoulderAngle) / 2;
+//elbow COM
+x2 = (2 * x1) + (elbowLen * cos(downAngle) / 2);
+y2 = (2 * y1) + (elbowLen * sin(downAngle) / 2);
+//weighted averaging
+COMx = (weight1 * x1 + weight2 * x2) / 2;
+COMy = (weight2 * y1 + weight2 * y2) / 2;
+COMAngle = atan2(COMy,COMx);
+r = sqrt(COMx ^ 2 + COMx ^ 2);
+
+τ = r × F × sinθ
+τ = r × (weight1 + weight2) × 9.81 × sin(COMAngle)
+shoulder.power( PID(current_pos, setpoint) + τ );
+```
+
+## Closing Notes
+
+Thanks for reading all the way to this point :\)
+
+What I've said so far has all been an oversimplification. You get the gist, but
+there are many tiny details along the way you'll have to take care of yourself, like
+motor ticks-per-rotation, Finite State Machines(for program asychrony), constants, PID tuning, angle wrapping, and the
+tedious math for angle calculations.
+
+Do angle wrapping [-180, 180] I beg of you.  
+[CtrlAltFtc Angle Wrapping](https://www.ctrlaltftc.com/practical-examples/controlling-heading).
+
+Here's the source code if you want it:  
+[Motion Profile BxSciFTC Centerstage](https://github.com/BxSciFTC/Centerstage/blob/MOTIONPROFILEDARM/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/opMode/testing/ArmPresetsTesting/ArmPresetsMotion.java)  
+[Arm PIDF BxSciFTC Centerstage](https://github.com/BxSciFTC/Centerstage/blob/MOTIONPROFILEDARM/TeamCode/src/main/java/org/firstinspires/ftc/teamcode/opMode/testing/armTesting/NewArm2.java)  
+Make sure to be on the MOTIONPROFILEDARM branch. It isn't as polished as it should be, but whatever :\).
+
+Among Us Jumpscare 🗣

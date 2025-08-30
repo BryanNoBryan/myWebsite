@@ -8,6 +8,7 @@ export const projects = [
         desc: 'A playground using Sveltekit and daisyUI.',
         image: 'website1.png',
         mdsvex: 'myWebsite',
+        star: false,
         icons: ['svelte', 'js', 'tailwindcss', 'daisyui'],
     },
     {
@@ -17,6 +18,7 @@ export const projects = [
         desc: 'Programmed Swerve Drive from complete scratch.',
         image: 'vex2.jpg',
         mdsvex: 'vex',
+        star: false,
         icons: ['cpp'],
     },
     {
@@ -26,6 +28,7 @@ export const projects = [
         desc: 'Programmed a 3 dof robotic arm.',
         image: 'ftc3.png',
         mdsvex: 'ftc',
+        star: true,
         icons: ['java'],
     },
     {
@@ -35,6 +38,7 @@ export const projects = [
         desc: 'Mobile app made with Flutter diagnosing using a Teachable Machine model with Firebase G-login and database.',
         image: 'dentalapp1.png',
         mdsvex: 'dentalapp',
+        star: false,
         icons: ['flutter', 'firebase', 'dart'],
     },
     {
@@ -44,6 +48,7 @@ export const projects = [
         desc: 'Hackathon project that based on your location and preferences, rates and recommends surrounding restaurants. It uses Google Places API, Yelp API, OpenAI API, and Firebase.',
         image: 'airesturant1.png',
         mdsvex: 'airesturant',
+        star: false,
         icons: ['flutter', 'firebase', 'dart'],
     },
     {
@@ -53,6 +58,7 @@ export const projects = [
         desc: 'I parsed my school\'s course guide PDF into an interactive web app, using flutter and firebase. It has access levels, allowing CRUD.',
         image: 'courseGuide1.png',
         mdsvex: 'courseGuide',
+        star: false,
         icons: ['flutter', 'firebase', 'dart'],
     },
     {
@@ -62,6 +68,7 @@ export const projects = [
         desc: 'Psuedo-Machine Learning from scratch, detecting spam emails with just a small set of data.',
         image: 'naivebayes1.png',
         mdsvex: 'naiveBayes',
+        star: false,
         icons: ['py'],
     },
     {
@@ -71,6 +78,7 @@ export const projects = [
         desc: 'Airplane COMPLETELY FROM SCRATCH. Including custom arduino transmitter, arduino flight controller, and a handmade plane.',
         image: 'plane/old_plane_master.jpg',
         mdsvex: 'airplane',
+        star: true,
         icons: ['cpp', 'arduino'],
     },
 ]

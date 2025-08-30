@@ -49,8 +49,9 @@
           let icons = proj.icons.map((icon) => `${base}/svg/${icon}.svg`);
           let mdsvex = `${base}/projects/${proj.mdsvex}`;
           let image = `${base}/images/${proj.image}`;
+          let star = proj.star;
           
-          let card_data = ({title, desc, icons, mdsvex, image}); 
+          let card_data = ({title, desc, icons, mdsvex, image, star}); 
 
           //new key
           if (!map.has(year)) {
@@ -103,7 +104,12 @@
                   alt="project" />
               </figure>
               <div class="card-body">
-                <h2 class="card-title">{proj.title}</h2>
+                <h2 class="card-title">
+                  {proj.title}
+                  {#if proj.star}
+                  <div class="badge badge-secondary">⭐</div>
+                  {/if}
+                </h2>
                 <p>{proj.desc}</p>
                 <div class='flex flex-row justify-center'>
                   {#each proj.icons as icon}
