@@ -1,1 +1,0 @@
-function t(){let e=screen.orientation.type;return console.log(`orientation ${e}`),e=="portrait-primary"||e=="portrait-secondary"?!0:(e=="landscape-primary"||e=="landscape-secondary",!1)}function i(){let e=screen.height,r=screen.width;return e<600||r<1e3}export{i as a,t as i};

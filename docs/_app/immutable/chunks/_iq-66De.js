@@ -1,1 +1,0 @@
-import"./DsnmJJEf.js";import{f as e,t as a,a as i}from"./Ncr3TIXe.js";import{s}from"./By_6KjCe.js";var m=e('<video controls><track kind="captions"/></video>',2);function d(o,r){var t=m();a(()=>s(t,"src",r.src)),i(o,t)}export{d as V};

@@ -22,3 +22,8 @@
   @apply justify-start;
   @apply justify-items-start;
 }
+
+.prose pre {
+  overflow-x: auto;
+  max-width: 100vw;
+}
