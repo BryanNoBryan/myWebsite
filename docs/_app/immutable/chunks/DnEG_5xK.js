@@ -1,0 +1,1 @@
+import"./DsnmJJEf.js";import{f as a,t as s,a as i,c as p,a2 as c,b as m}from"./TpHHFT-8.js";import{s as n}from"./0gT6S2XD.js";var d=a('<video controls playsinline="" loop><source type="video/mp4"/> <track kind="captions"/></video>',2);function u(o,t){var e=d(),r=p(e);c(2),m(e),s(()=>n(r,"src",t.src)),i(o,e)}export{u as V};

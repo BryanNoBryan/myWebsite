@@ -2,4 +2,7 @@
     let { src } = $props();
 </script>
 
-<video {src} controls><track kind="captions" /></video>
+<video controls playsinline loop>
+  <source {src} type="video/mp4" />
+  <track kind="captions" />
+</video>
