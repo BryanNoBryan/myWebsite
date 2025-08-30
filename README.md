@@ -1,4 +1,4 @@
-[bryanliu.dev](bryanliu.dev)
+[bryanliu.dev](https://bryanliu.dev)
 
 # welcome :\)
 
