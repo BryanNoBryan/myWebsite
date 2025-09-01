@@ -121,6 +121,7 @@ It's a bunch of tedious math using the current position of both joints. I leave 
 ```
 τ = r × F × sinθ
 τ = forearm_length/2 × mass × 9.81 × sin(relative_angle)
+setpoint = MotionProfile(...)
 elbow.power( PID(current_pos, setpoint) + τ );
 ```
 
@@ -147,10 +148,11 @@ y2 = (2 * y1) + (elbowLen * sin(downAngle) / 2);
 COMx = (weight1 * x1 + weight2 * x2) / 2;
 COMy = (weight2 * y1 + weight2 * y2) / 2;
 COMAngle = atan2(COMy,COMx);
-r = sqrt(COMx ^ 2 + COMx ^ 2);
+r = sqrt(COMx ^ 2 + COMy ^ 2);
 
 τ = r × F × sinθ
 τ = r × (weight1 + weight2) × 9.81 × sin(COMAngle)
+setpoint = MotionProfile(...)
 shoulder.power( PID(current_pos, setpoint) + τ );
 ```
 
