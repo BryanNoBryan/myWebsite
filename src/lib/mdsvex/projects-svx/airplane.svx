@@ -29,7 +29,6 @@
 - [Materials/Supplies](#Materials/Supplies)
 - [Build](#Build)
 - [Usage](#usage)
-- [Contributing](../CONTRIBUTING.md)
 - [Authors](#authors)
 - [Acknowledgments](#acknowledgments)
 - [Debugging](#Debugging)
