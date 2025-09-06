@@ -97,7 +97,7 @@
         <div class="timeline-end timeline-box flex flex-row flex-wrap">
           <!-- start card -->
           {#each projects_map.get(year) as proj}
-            <a href={proj.mdsvex} class="card bg-base-100 {!small ? 'w-96' : 'w-75'} shadow-lg p-1 m-2" transition:slide={{axis: 'y'}}>
+            <a href={proj.mdsvex} class="card bg-base-200 hover:bg-base-300 {!small ? 'w-96' : 'w-75'} shadow-lg p-1 m-2  transition-transform duration-200 ease-in-out hover:scale-102" transition:slide={{axis: 'y'}}>
               <figure>
                 <img
                   src={proj.image}

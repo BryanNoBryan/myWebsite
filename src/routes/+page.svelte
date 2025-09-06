@@ -40,7 +40,7 @@
                     <img
                         src="{base}/svg/github.svg"
                         alt='github'
-                        class=''
+                        class="transition-transform duration-200 ease-in-out hover:scale-125"
                         height=30
                         width=30
                     />
@@ -51,7 +51,7 @@
                     <img
                         src="{base}/svg/linkedin.svg"
                         alt='linkedin'
-                        class=''
+                        class="transition-transform duration-200 ease-in-out hover:scale-125"
                         height=30
                         width=30
                     />
@@ -61,9 +61,9 @@
         </div>
         <div class="flex-1 h-full flex flex-col justify-center m-4 p-4">
             <div class='h-1/2 flex flex-col justify-items-center justify-evenly'>
-                <a href='{base}/projects' class="btn btn-primary">Projects</a>
-                <a href='{base}/aboutme' class="btn btn-secondary">About Me</a>
-                <a class="btn btn-warning" target="_blank" href='https://www.youtube.com/watch?v=grd-K33tOSM'>Do not Press</a>
+                <a href='{base}/projects' class="btn btn-primary transition-transform duration-200 ease-in-out hover:scale-105">Projects</a>
+                <a href='{base}/aboutme' class="btn btn-secondary  transition-transform duration-200 ease-in-out hover:scale-105">About Me</a>
+                <a class="btn btn-warning transition-transform duration-200 ease-in-out hover:scale-105" target="_blank" href='https://www.youtube.com/watch?v=grd-K33tOSM'>Do not Press</a>
             </div>
         </div>
     </div>
