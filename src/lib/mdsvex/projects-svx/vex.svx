@@ -14,6 +14,6 @@
 
 Additional Trick: Cosine Compensation
 
-[Cosine Compensation](https://www.chiefdelphi.com/t/paper-4-wheel-independent-drive-independent-steering-swerve/107383)
+[Cosine Compensation](https://docs.wpilib.org/en/stable/docs/software/kinematics-and-odometry/swerve-drive-kinematics.html#cosine-compensation)
 
 [Github](https://github.com/BryanNoBryan/SwerveDrive2024/tree/main)
